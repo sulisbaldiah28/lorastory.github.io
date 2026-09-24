@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fairy Kingdom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Garamond&family=Courier+Prime&display=swap" rel="stylesheet">
+    
+    <style>
+:root {
+    --pink-lembut: #E8B4C4;
+    --pink-terang: #F4D1DC;
+    --pink-glow: rgba(232, 180, 196, 0.45);
+    --krem: #FFF5EB;
+    --krem-lembut: #F9EDE0;
+    --krem-glow: rgba(255, 245, 235, 0.6);
+    --coklat-lembut: #9B6A48;
+    --coklat-tua: #6F462B;
+    --coklat-gelap: #4E301C;
+    --putih-krem: #FFFAF5;
+    --bingkai-pink: rgba(232, 180, 196, 0.5);
+    --bayangan-glow: rgba(232, 180, 196, 0.35);
+    --Beight: #F5F5DC;
+    --Burly Wood: #DEB887;
+    --Olive: #808000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Garamond', serif;
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(232, 180, 196, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 85% 25%, rgba(255, 245, 235, 0.5) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(232, 180, 196, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, var(--krem) 0%, var(--krem-lembut) 50%, var(--krem) 100%);
+    color: var(--coklat-tua);
+    line-height: 1.8;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('bg-foto.jpg.jfif') no-repeat center center/cover;
+    opacity: 0.87;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.ornament-top, .ornament-bottom {
+    text-align: center;
+    color: var(--coklat-lembut);
+    font-size: 32px;
+    opacity: 0.7;
+    margin: 15px 0;
+    letter-spacing: 8px;
+    background: linear-gradient(90deg, transparent, var(--bayangan-glow), transparent);
+    padding: 8px 0;
+    border-top: 1px solid var(--bingkai-pink);
+    border-bottom: 1px solid var(--bingkai-pink);
+    text-shadow: 0 0 8px var(--pink-glow);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, var(--coklat-tua), var(--Beight));
+    z-index: 1000;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 
+        0 4px 20px var(--bayangan-glow),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    border-bottom: 3px solid var(--Beight);
+}
+
+.logo-wattpad {
+    height: 90px;
+    width: auto;
+    filter: drop-shadow(0 0 6px var(--pink-terang));
+}
+
+.logo-samping {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nama-situs {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--putih-krem);
+    font-weight: 600;
+    text-shadow: 0 0 8px var(--pink-glow);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding-right: 15px;
+}
+
+.nav-links a {
+    color: var(--putih-krem);
+    text-decoration: none;
+    font-size: 17px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: 0.4s ease;
+    font-family: 'Playfair Display', serif;
+    border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+    background: rgba(232, 180, 196, 0.25);
+    border-color: var(--pink-terang);
+    color: var(--pink-terang);
+    box-shadow: 0 0 12px var(--pink-glow);
+}
+
+section {
+    padding: 120px 20px 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.page {
+    display: none;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--coklat-gelap);
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 
+        0 0 10px var(--pink-glow),
+        0 0 20px rgba(255, 245, 235, 0.5);
+}
+
+h1 { 
+    font-size: 2.3rem; 
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right, transparent, var(--pink-lembut), transparent) 1;
+    padding-bottom: 12px;
+}
+
+.font-contoh1 { 
+    font-family: 'Playfair Display', serif; 
+    letter-spacing: 2px; 
+    color: var(--coklat-tua);
+    text-shadow: 0 0 6px var(--pink-glow);
+}
+
+.font-contoh2 { 
+    font-family: 'Garamond', serif; 
+    font-style: italic; 
+    color: var(--coklat-lembut);
+}
+
+.font-contoh3 { 
+    font-family: 'Courier Prime', monospace; 
+    text-transform: uppercase; 
+    font-size: 0.95em; 
+    color: var(--coklat-gelap);
+}
+
+.profil-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255,245,235,0.92), rgba(249,237,224,0.88));
+    padding: 35px;
+    border-radius: 8px;
+    border: 2px solid var(--coklat-tua);
+    box-shadow: 
+        0 8px 30px var(--bayangan-glow),
+        inset 0 0 0 1px rgba(255,255,255,0.6);
+    position: relative;
+}
+
+.profil-container::before, .profil-container::after {
+    content: "✦";
+    position: absolute;
+    color: var(--pink-lembut);
+    font-size: 20px;
+    opacity: 0.6;
+    text-shadow: 0 0 8px var(--coklat-lembut);
+}
+.profil-container::before { top: 15px; left: 15px; }
+.profil-container::after { bottom: 15px; right: 15px; }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.foto-penulis {
+    width: 230px;
+    height: 290px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 4px solid var(--coklat-tua);
+    box-shadow: 
+        0 0 18px var(--pink-glow),
+        0 4px 12px rgba(78, 48, 28, 0.15);
+}
+
+.navigation-links {
+  clear: both;
+  margin-top: 30px;
+}
+
+.bio-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.bio-text p {
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.katalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    margin-top: 35px;
+}
+
+.karya-card {
+    background: linear-gradient(to bottom, rgba(255,245,235,0.95), rgba(249,237,224,0.9));
+    border: 2px solid var(--coklat-lembut);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.karya-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--beight), transparent);
+}
+
+.karya-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+        0 12px 30px var(--bayangan-glow),
+        0 0 15px var(--pink-glow);
+    border-color: var(--coklat-tua);
+}
+
+.cover-novel {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 3px solid var(--coklat-lembut);
+    box-shadow: 0 0 12px var(--pink-glow);
+}
+
+.blurb {
+    font-size: 15px;
+    color: var(--coklat-tua);
+    margin: 12px 0;
+    text-align: justify;
+    line-height: 1.7;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    background: linear-gradient(to bottom, var(--coklat-tua), var(--coklat-gelap));
+    color: var(--putih-krem);
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 6px 3px;
+    font-family: 'Playfair Display', serif;
+    transition: 0.3s ease;
+    border: 1px solid var(--pink-lembut);
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px transparent;
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom, var(--coklat-lembut), var(--coklat-tua));
+    color: #fff;
+    box-shadow: 
+        0 0 15px var(--pink-glow),
+        0 0 25px rgba(232, 180, 196, 0.4);
+    border-color: var(--pink-terang);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--coklat-lembut);
+    color: var(--coklat-tua);
+}
+
+.btn-outline:hover {
+    background: var(--coklat-lembut);
+    color: var(--putih-krem);
+    border-color: var(--pink-terang);
+}
+
+.quote-box {
+    background: linear-gradient(135deg, rgba(255,245,235,0.95), rgba(249,237,224,0.9));
+    border-left: 4px solid var(--coklat-tua);
+    padding: 35px;
+    margin: 25px auto;
+    border-radius: 6px;
+    max-width: 750px;
+    box-shadow: 
+        0 8px 25px var(--bayangan-glow),
+        inset 0 0 15px rgba(232, 180, 196, 0.1);
+    position: relative;
+}
+
+.quote-box::before {
+    content: "❝";
+    font-size: 48px;
+    color: var(--coklat-lembut);
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    opacity: 0.25;
+    text-shadow: 0 0 10px var(--pink-glow);
+}
+
+.quote-text {
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.page-nav {
+    text-align: center;
+    margin-top: 45px;
+}
+
+.kontak-box {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255,245,235,0.95), rgba(249,237,224,0.9));
+    padding: 35px;
+    border-radius: 6px;
+    border: 2px solid var(--bingkai-pink);
+    box-shadow: 0 8px 25px var(--bayangan-glow);
+}
+
+.ig-link {
+    font-size: 18px;
+    color: var(--coklat-tua);
+    text-decoration: none;
+    border-bottom: 1px solid var(--pink-lembut);
+    padding-bottom: 2px;
+    transition: 0.3s;
+}
+
+.ig-link:hover {
+    color: var(--coklat-lembut);
+    border-bottom-color: var(--coklat-lembut);
+    text-shadow: 0 0 8px var(--pink-glow);
+}
+
+@media (max-width: 1024px) {
+    .katalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header { 
+        flex-direction: column; 
+        gap: 10px; 
+        padding: 12px; 
+        text-align: center;
+    }
+    
+    .logo-wattpad {
+        height: 65px;
+    }
+
+    .nav-links { 
+        justify-content: center; 
+        padding-right: 0; 
+        gap: 6px; 
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    section {
+        padding: 180px 15px 40px;
+    }
+
+    h1 { 
+        font-size: 1.8rem; 
+    }
+
+    .profil-container { 
+        justify-content: center; 
+        text-align: center; 
+        padding: 20px; 
+    }
+
+    .foto-penulis { 
+        margin: 0 auto; 
+        width: 180px;
+        height: 240px;
+    }
+
+    .katalog-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 12px; 
+    }
+
+    .karya-card {
+        padding: 12px;
+    }
+
+    .cover-novel { 
+        height: 210px; 
+    }
+
+    .blurb {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        margin: 4px 1px;
+    }
+
+    .ornament-top, .ornament-bottom { 
+        font-size: 20px; 
+        letter-spacing: 4px; 
+    }
+}
+
+@media (max-width: 420px) {
+    .katalog-grid { 
+        grid-template-columns: 1fr;
+    }
+    .cover-novel {
+        height: 280px;
+    }
+}
+
+/* KODE UTAMA KONTAK BOX (Ditaruh di luar media query agar muncul di semua ukuran layar) */
+.kontak-box {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255,245,235,0.85), rgba(249,237,224,0.8));
+    padding: 35px;
+    border-radius: 6px;
+    border: 2px solid var(--coklat-tua);
+    box-shadow: 0 8px 25px var(--bayangan-glow);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.kontak-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('bg-lora.jpg.jfif') no-repeat center center/cover;
+    opacity: 0.30;
+    z-index: -1;
+    pointer-events: none;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo-samping">
+        <img src="logo.jpg.png" alt="Logo Wattpad" class="logo-wattpad">
+        <span class="nama-situs">Alora Deythyna</span>
+    </div>
+    <nav class="nav-links">
+        <a href="#" onclick="tampilkanHalaman('beranda')">Beranda</a>
+        <a href="#" onclick="tampilkanHalaman('novel')">Novel</a>
+        <a href="#" onclick="tampilkanHalaman('cerpen')">Cerpen</a>
+        <a href="#" onclick="tampilkanHalaman('kutipan')">Kutipan</a>
+        <a href="#" onclick="tampilkanHalaman('kontak')">Kontak</a>
+    </nav>
+</header>
+
+<section id="beranda" class="page active">
+    <div class="ornament-top">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+    <h1>About the Author</h1>
+    <div class="profil-container">
+        <img src="foto-profil-2.jfif" alt="Alora Deythyna" class="foto-penulis">
+        <div class="bio-text">
+            <p class="font-contoh1"><strong>Nama Pena:</strong> Alora Deythyna</p>
+            <p class="font-contoh2"><strong>Peran di Wattpad:</strong> Penulis Fiksi Chinese & Fantasy Historical</p>
+            <p><strong>Bergabung sejak:</strong> 14 Juli 2023</p>
+            <hr style="border:1px solid var(--pink-lembut);margin:12px 0;">
+            <p><strong>Tanggal Lahir:</strong> 14 Desember 200*</p>
+            <p><strong>Domisili:</strong> Bogor, Jawa Barat</p>
+            <p><strong>Lulusan:</strong> Yayasan Al-Fakhriyah, SMK 98 Ciawi ( jurusan TKJT )</p>
+            <hr style="border:1px solid var(--pink-lembut);margin:12px 0;">
+            <p class="font-contoh3">𝐊𝐢𝐬𝐚𝐡 𝐒𝐢𝐧𝐠𝐤𝐚𝐭 𝐋𝐨𝐫𝐚 :</p>
+            <p>Halo semua! Perkenalkan kembali, namaku Alora. Aku adalah penulis novel di platform menulis Wattpad sejak 2023 yang awalnya bermula dari buku catatan harian. Menulis cerita fiksi yang berbalut sejarah, fantasi, dan romansa yang berlatar masa lampau adalah suatu hal yang sudah menjadi bagian utama dari hidupku. Selain menulis, aku juga suka mengerjakan hobi lainku di bidang IT, yaitu pemrograman, dan website ini adalah karya pertamaku. Sisanya? Menulis, menulis, dan menulis𓂃</p>
+            <p style="margin-top:12px;">
+                <a href="https://www.wattpad.com/story/387436922?utm_medium=link&utm_source=android&utm_content=share_writing" target="_blank" class="btn">Kunjungi Wattpad</a>
+                <a href="https://www.instagram.com/aloradeythyna?igsh=NWt0OXd6OGV5bzM5" target="_blank" class="btn">Kunjungi Instagram</a>
+                <a href="https://www.tiktok.com/@aloradeythyna?_t=ZS-90HXVYWJXP7&_r=1" target="_blank" class="btn">Kunjungi TikTok</a>
+            </p>
+        </div>
+    </div>
+    <div class="page-nav">
+        <button class="btn" onclick="tampilkanHalaman('novel')">Lihat Karya Novel →</button>
+    </div>
+    <div class="ornament-bottom">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+</section>
+
+<section id="novel" class="page">
+    <div class="ornament-top">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+    <h1>Daftar Karya Novel</h1>
+    <div class="katalog-grid">
+        <div class="karya-card">
+            <div>
+                <img src="cover-novel-1.jpg.jpeg" alt="Cover Novel 1" class="cover-novel">
+                <h3 class="font-contoh1">The Heirs</h3>
+                <p class="blurb">Kala itu, para ningrat saling berlomba menentang hukum langit demi kekayaan dan kekuasaan pribadi.
+
+Seorang pemuda yang sesungguhnya pewaris sah kemuliaan, sempat terbuang dan terlantar, namun akhirnya kedudukannya menjulang tinggi di lingkaran kekaisaran.
+ 
+Ambisi gelap keluarganya mengguncang dasar kehormatan leluhur, bahkan berniat menjerumuskannya ke dalam jurang kegelapan terkutuk.
+
+Akankah ia turut menentang takdir, atau bangkit menegakkan keadilan demi mengembalikan keseimbangan antara bumi dan langit?
+</p>
+            </div>
+            <div>
+                <a href="https://www.wattpad.com/story/387436922?utm_medium=link&utm_source=android&utm_content=share_writing" target="_blank" class="btn">Let's Read</a>
+                <button class="btn btn-outline" onclick="tampilkanSpoiler('spoiler1')">Ada spoiler, nih</button>
+                <div id="spoiler1" style="display:none;margin-top:12px;padding:12px;background:rgba(232,180,196,0.18);border-radius:4px;border-left:2px solid var(--pink-lembut); text-align: left;">
+                    <em>""Mengapa kau di sini?" tanya Haoran singkat.
+
+"Harusnya aku yang bertanya begitu. Seorang putra mahkota berkeliaran di tengah malam, padahal sudah terikat janji pernikahan," jawab wanita itu santai.
+
+"Itu bukan urusanmu, Xin Yu." Haoran kembali menatap ke arah kota yang terhampar jauh di bawah.
+
+Siluman ular yang sering disebut penyihir egois itu memang kerap menggodanya, bukan karena hati yang terpaut, melainkan sekadar ingin melihat Haoran kehilangan kendali. Namun sayang baginya, Haoran bukanlah lawan yang mudah dipancing emosi.
+
+"Jarang sekali kau datang ke sini. Sibuk?" tanya Xin Yu sambil melangkah mendekat.
+
+Haoran tetap diam.
+
+"Hei, si Batu Kuno! Kau bisu? Jawab aku!" serunya tak sabar.
+
+"Baiklah, terserah kau saja. Memang kau selalu begitu," akhirnya ia menyerah, namun bukan berarti berhenti.
+
+Jeda yang terasa hidup dibiarkan mengalir antara mereka sejenak. 
+
+"Desa Song Jian makin berbelit-belit. Kau harus bertindak cepat dan tepat, sebelum tempat itu kembali melahap korban," ucap Xin Yu tiba-tiba dengan nada yang lebih serius.
+
+Haoran tak berkutik sedikit pun, meski kata-kata itu menyentuh titik yang paling ia perhatikan. Isu gaib yang melanda desa itu masih terus menjadi bahan bisik-bisik warga."</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="karya-card">
+            <div>
+                <img src="cover-novel-2.jpg.jpeg" alt="Cover Novel 2" class="cover-novel">
+                <h3 class="font-contoh1">Love On Paper</h3>
+                <p class="blurb">Suyi memang berbeda dari yang lain, dan terkkadang hal itu membuatnya selalu merasa ada di titik terendah. Karena menjalani hari tanpa dorongan semangat itu berat, Suyi juga manusia yang butuh untuk ditemani. 
+
+Namun, seiring waktu ada seseorang yang berani untuk mendekati Suyi. Membagi waktu dan kebahagiaannya, bahkan rela menjadi yang paling pertama membela Suyi. 
+
+Rasa nyaman bukan lagi sebagai alasan utama Suyi berada di dekat orang itu, melainkan rasa asing yang tak pernah ia rasakan.</p>
+            </div>
+            <div>
+                <a href="https://www.wattpad.com/story/392705974?utm_source=android&utm_medium=link&utm_content=story_info&wp_page=story_details_button&wp_uname=aloradeythyna" target="_blank" class="btn">Let's Read</a>
+                <button class="btn btn-outline" onclick="tampilkanSpoiler('spoiler2')">Ada spoiler, nih</button>
+                <div id="spoiler2" style="display:none;margin-top:12px;padding:12px;background:rgba(232,180,196,0.18);border-radius:4px;border-left:2px solid var(--pink-lembut); text-align: left;">
+                    <em> Sebelum mengambil spidol, Bu Qian lupa untuk menyampaikan sesuatu.
+                        <br>
+  "Ah, Ibu lupa. Hari ini ada ujian harian setelah jam istirahat." ujarnya tanpa basa-basi. 
+  Sontak semua siswa melenguh, sebagian ada yang menggeram sendiri, dan sebagian ada yang bersorak ria dalam hati. 
+  "Sialan, aku belum sempat belajar tadi malam." Yunzhang menahan tawa. "Eh, memangnya aku sering belajar?" 
+  Lixue melirik Yunzhang dari bangku yang agak jauh. Ia tersenum geli mendapati pemuda itu menderita hari ini. 
+
+  "Dia pasti kesal karena ada ujian dadakan." gumamnya. 
+
+  Gadis itu merobek kertas dan menulis sesuatu, setelahnya kertas itu digulung dan dilempar. 
+
+  Tuk! 
+
+  Meleset! Kertasnya malah mendarat tepat di kening Suyi. Lixue langsung membuang muka, pura-pura tidak tahu. 
+
+  Suyi terkesiap dan mengusap keningnya, melihat ada kertas yang jatuh, ia celingukan mencari pelaku. 
+
+  Karena tidak ada yang mencurigakan, akhirnya ia membuka kertas itu. 
+
+[ Yunzhang, kamu pasti akan kelimpungan saat ujian. Bagaimana jika kita belajar bersama nanti? ] 
+
+  Tulisan ini terasa familiar, tapi Suyi tetap menyampaikan surat itu kepada target yang sebenarnya. 
+
+  Bahu Yunzhang dicolek, ketika menoleh, Suyi langsung memberikan kertas itu. 
+
+  Suratnya dibaca dengan semangat, tapi tunggu! Ini bukan tulisan Suyi, siapa yang menulis ini? Yunzhang melirik semua siswa di kelas. 
+
+  Kertas ini sudah kusut, apalah itu Yunzhang tidak peduli. Ia menyingkirkan kertasnya dan membalas di kertas yang berbeda. 
+
+  Surat itu dilempar ke sembarang arah. 
+
+  [ Tidak mau, ah. ] balas Yunzhang.</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="karya-card">
+            <div>
+                <img src="cover-novel-4-jpg.jpeg" alt="Cover Novel 4" class="cover-novel">
+                <h3 class="font-contoh1">Beyond The Circle</h3>
+                <p class="blurb">Lingkaran cantik yang diyakini sebuah pintu menuju rumahnya para peri, yakni Fairy Circle, kembali muncul di sebuah hutan di London, Barat, Barnes Village. Seperti yang diketahui, bukankah teori Fairy Circle hanya sekadar dongeng dari beberapa abad lalu? 
+
+Tahun 1865, Mattilda tumbuh sebagai gadis yang penuh cinta dan rasa penasaran yang membumbung tinggi. Hatinya kaya akan welas asih terhadap hewan, tumbuhan, dan semua makhluk lainnya di bumi. 
+
+Sampai suatu sore di peternakan kakeknya, Joseph. Para domba masih berkeliaran di penjuru ladang, rawan menjadi mangsa serigala, Joseph cemas hingga meminta bantuan Mattilda tuk segera membawa domba ke kandang.
+
+Bukannya kembali, justru langkahnya terus berjalan ke dalam hutan hingga menemukan jamur cantik yang membentuk lingkaran di tanah. Mattilda kagum sekaligus merasa janggal, haruskah ia pulang atau... menelusuri jejak para jamur cantik tersebut?</p>
+            </div>
+            <div>
+                <a href="https://www.wattpad.com/story/416208712?utm_source=android&utm_medium=link&utm_content=share_writing&wp_page=create&wp_uname=aloradeythyna" target="_blank" class="btn">Let's Read</a>
+                <button class="btn btn-outline" onclick="tampilkanSpoiler('spoiler3')">Ada spoiler, nih</button>
+                <div id="spoiler3" style="display:none;margin-top:12px;padding:12px;background:rgba(232,180,196,0.18);border-radius:4px;border-left:2px solid var(--pink-lembut); text-align: left;"> 
+                    <em> Konon, jangan pernah melangkahkan kaki ke dalam pintu menuju rumah 'mereka'. Orang-orang dahulu menyebutnya, Fairy Circle. Objek yang membentuk pola lingkaran itu katanya bisa membawa dirimu ke suatu tempat. 
+
+Tempat di mana ada kehidupan 'mereka' yang terisolasi penuh dari kehidupan yang saat ini kita jalani. Sekali kita melangkah, maka hilang sudah kesempatan untuk kembali pulang. 
+
+Pada suatu sore di Desa Barnes, kabut tipis menyelimuti di segala penjuru. Gadis manis, Mattilda Hathaway menemukan Blind Spot di tepi hutan pohon Oak. Para tumbuhan seperti jamur, bunga, dan batu terbentuk pola lingkaran yang sempurna. 
+
+Dirasa menarik, Mattilda tanpa ragu melangkah masuk ke dalam lingkaran tersebut. Ia bahkan melompat riang, berandai-andai menjadi seorang ratu yang dikelilingi para peri yang mencintainya.
+
+Namun ketika ia hendak pulang, tanpa sadar setiap langkahnya meninggalkan percikan cahaya seperti glitter dengan aura magis yang kentara, cahaya itu merambat di atas tanah yang berlumut. 
+
+Dan saat itulah, pepohonan di sekelilingnya terasa begitu berbeda. Untuk... kali pertama. 
+
+Kabut tipis di desa perlahan menelan sepenuhnya hutan Oak, siluet cahaya mentari juga seperti menyembunyikan sinarnya, burung-burung seakan pergi meninggalkan hutan. 
+
+Mattilda sontak menatap langit yang mendung, seolah berkata padanya bahwa ia bimbang kemanakah arah jalan pulang? Hari sudah makin gelap. 
+
+Dan ya, alam menjawabnya dengan sapuan angin ke arah selatan di mana Mattilda tiba-tiba mengingat rute awal ia kemari. Berjalanlah Mattilda menyusuri jalan setapak itu. 
+
+Sudah lama ia berjalan, langit kembali tersenyum, mentari menyambutnya lagi dengan sinar yang hangat, lantas Mattilda tambah bingung dibuatnya. 
+
+Di hadapannya kini terbentang panorama alam yang... sepertinya cukup asing.
+
+Pepohonan di sini bentuknya lucu, ada yang tumbuh lurus, melingkar, bahkan menyerupai payung. Rumput yang diinjak rasanya dua kali lipat lebih nyaman. Sekawanan burung melintas di atas Mattilda, tetapi rupanya sedikit ubnormal. Bagaimana tidak? Makhluk itu terbang, memiliki sayap seperti merpati, tetapi kepalanya seekor ikan koi? Bulunya hijau berkilau, seperti batu emerald. 
+
+Tak henti-hentinya Mattilda menatap kagum semua keunikan yang ada di sini. Tetapi untuk sesaat ia termenung. Apa yang tengah terjadi? Katakan ini hanya mimpi? Bagaimana jika ia pingsan di tengah hutan tadi? 
+
+Mattilda berjalan lagi, kali ini langkahnya lumayan pelan, kedua matanya menyapu sudut hutan, memperhatikan semua makhluk di sana yang diam-diam mengintip dan menatapnya lekat, mengikuti setiap inci kemana Mattilda akan melangkah, ada makhluk asing yang berjalan di lingkungan mereka! 
+
+Di langkah terakhirnya, tanpa sengaja ia tertabrak makhluk kecil yang terbang melesat ke arahnya. Makhluk itu bersayap tipis, tubuhnya mungil, bercahaya, tetapi... rupanya sedikit aneh, bahkan menyeramkan untuk orang awam. 
+
+Makhluk itu menatap Mattilda cukup lama, seolah berkata, Siapa ini?
+
+Mattilda ikut hanyut menatap makhluk kecil itu, dalam pikirannya ia mengira sesuatu yang janggal telah terjadi. Hatinya juga merasa begitu. 
+
+Bling! 
+
+Mattilda mengerjap, sontak ia menatap langit, semua di sekelilingnya kini terasa aneh. Ia masih terlalu kecil untuk memahami hal serumit ini, baginya... ini hanya mimpi yang istimewa. 
+
+Apakah aku yang menemukan dunia ini... atau justru dunia inilah yang telah lama menungguku?</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="karya-card">
+            <div>
+                <img src="cover-novel-3.jpg.jpeg" alt="Cover Novel 3" class="cover-novel">
+                <h3 class="font-contoh1">The Goddes of Immortality</h3>
+                <p class="blurb">Li Ming Yue, gadis ceria dengan seribu impiannya. Ia sama sekali tidak berpikir hidupnya benar-benar berubah 180 derajat setelah pergi ke alam semesta yang fantastis. 
+
+Mengalami transmigrasi menjadi seorang dewi yang agung tak membuat semangat hidupnya padam, ia mendapatkan banyak pengalaman dan pelajaran hidup dari petualangan yang epik. Satu hal yang tidak terduga, cinta sejati mengalahkan segala kejahatan. Ming Yue menemukan cinta sejati yang ia kira hanya mimpi belaka. 
+
+Antara cinta dan takhta kerajaan, manakah yang akan mutlak menjadi pilihan Li Ming Yue dalam mengembara di dunia immortal ini?</p>
+            </div>
+            <div>
+                <a href="https://www.wattpad.com/story/385712596?utm_source=android&utm_medium=link&utm_content=story_info&wp_page=story_details_button&wp_uname=aloradeythyna" target="_blank" class="btn">Let's Read</a>
+                <button class="btn btn-outline" onclick="tampilkanSpoiler('spoiler4')">Ada spoiler, nih</button>
+                <div id="spoiler4" style="display:none;margin-top:12px;padding:12px;background:rgba(232,180,196,0.18);border-radius:4px;border-left:2px solid var(--pink-lembut); text-align: left;">
+                    <em>Walaupun perasaan sakit dan sedih menghampiri, tak dapat dipungkiri jika ia juga merasa terluka karena tak bisa melawan takdir yang ada. 
+
+Ia tak akan bisa pulang ke tempatnya berasal jika misinya hancur di sini. 
+
+"Ayah, aku ... aku tidak bisa menerima pendapat Ayah kali ini, aku tak bisa melakukan ini." ucap Feiyuan dengan sopan. 
+
+Kaisar nampak tak setuju dan tak suka dengan putranya yang membangkang.
+
+"Mengapa? Akhir-akhir ini, pendapatmu denganku selalu bertolak belakang. Apakah ada sesuatu yang membuatmu berpaling? Lagipula, Shen Li bukanlah adik kandungmu. Aku tahu ini hal yang sangat tidak senonoh, tapi, apa salahnya jika kamu menuruti perkataanku?" ujar Kaisar Xi'an dengan sedikit penekanan. 
+
+"Aku bisa memilih wanita lain selain dirinya, Ayah! Persetan dengan keturunan yang agung. Jika suatu saat aku ditakdirkan menjadi penerus wilayah kekaisaran ini dengan gadis itu, aku tidak akan pernah bahagia," balas Feiyuan menatap Putri Shen. Pria itu terlihat mulai letih. 
+
+"Dan, jika pemimpinnya saja tidak bahagia dan tenang. Apa kabar dengan keadaan wilayah kekaisarannya? Organisasi di bawah kepemimpinannya? Apakah akan makmur dan berjaya? Tentu tidak." sambung Feiyuan membuat Kaisar bungkam. 
+
+"Putra Mahkota Zhang, jaga sikap Anda!" bentak Selir Wen yang tak suka dengan perilaku kasar Feiyuan terhadap Kaisar.</em>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- Menutup .katalog-grid -->
+
+    <div class="page-nav">
+        <button class="btn" onclick="tampilkanHalaman('beranda')">← Kembali ke Profil</button>
+        <button class="btn" onclick="tampilkanHalaman('cerpen')">Lihat Kumpulan Cerpen →</button>
+    </div>
+    <div class="ornament-bottom">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+</section>
+
+<section id="cerpen" class="page">
+    <div class="ornament-top">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+    <h1>Kumpulan Cerpen & Catatan</h1>
+    <div class="katalog-grid">
+        <div class="karya-card">
+            <div>
+                <img src="cover-cerpen-1.jfif" alt="Cover Cerpen" class="cover-novel">
+                <h3 class="font-contoh2">Contoh Cerpen 1</h3>
+                <p class="blurb">kisah putri dan Kastil Tidur.</p>
+            </div>
+            <div>
+                <a href="https://www.wattpad.com/story/TAUTAN" target="_blank" class="btn">Let's Read</a>
+            </div>
+        </div>
+        <div class="karya-card">
+            <div>
+                <img src="cover-cerpen-2.jfif" alt="Cover Cerpen" class="cover-novel">
+                <h3 class="font-contoh2">Contoh Cerpen 2</h3>
+                <p class="blurb">Putri dan Labu Ajaib.</p>
+            </div>
+            <div>
+                <a href="https://www.wattpad.com/story/TAUTAN" target="_blank" class="btn">Let's Read</a>
+            </div>
+        </div>
+        <div class="karya-card">
+            <div>
+                <img src="cover-cerpen-3.jfif" alt="Cover Cerpen" class="cover-novel">
+                <h3 class="font-contoh2">Contoh Cerpen 3</h3>
+                <p class="blurb">Lampion Matahari.</p>
+            </div>
+            <div>
+                <a href="https://www.wattpad.com/story/TAUTAN" target="_blank" class="btn">Let's Read</a>
+            </div>
+        </div>
+    </div> <!-- Menutup .katalog-grid -->
+
+    <div class="page-nav">
+        <button class="btn" onclick="tampilkanHalaman('novel')">← Lihat Daftar Novel</button>
+        <button class="btn" onclick="tampilkanHalaman('kutipan')">Kata-kata & Kutipan →</button>
+    </div>
+    <div class="ornament-bottom">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+</section>
+
+<section id="kutipan" class="page">
+    <div class="ornament-top">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+    <h1>Kata-kata & Kutipan Penulis</h1>
+    <div class="quote-box">
+        <p class="quote-text font-contoh2"> "Aku kira, setiap penulis yang jujur, akhir-kelaknya akan kecewa dan dikecewakan."</p>
+        <p style="text-align:right;margin-top:15px;color:var(--coklat-lembut);">Pramoedya Ananta Toer</p>
+    </div>
+    <div class="quote-box">
+        <p class="quote-text font-contoh2"> "Alangkah mengerikannya menjadi tua dengan kenangan masa muda yang hanya berisi kemacetan jalan, ketakutan datang terlambat ke kantor, tugas-tugas rutin yang tidak menggugah semangat, dan kehidupan seperti mesin, yang hanya akan berakhir dengan pensiun tidak seberapa."</p>
+        <p style="text-align:right;margin-top:15px;color:var(--coklat-lembut);">Seno Gumira Ajidarma</p>
+    </div>
+    <div class="quote-box">
+        <p class="quote-text font-contoh2"> "Dalam hidup kita, cuma satu yang kita punya, yaitu keberanian. Kalau tidak punya itu, lantas apa harga hidup kita ini?"</p>
+        <p style="text-align:right;margin-top:15px;color:var(--coklat-lembut);">Pramoedya Ananta Toer</p>
+    </div>
+     <div class="quote-box">
+        <p class="quote-text font-contoh2"> "Jika gunjingan mereka dijadikan sebagai patokan hidupmu, lalu untuk siapa kamu hidup?"</p>
+        <p style="text-align:right;margin-top:15px;color:var(--coklat-lembut);">Alora Deythyna</p>
+    </div>
+    <div class="page-nav">
+        <button class="btn" onclick="tampilkanHalaman('cerpen')">← Lihat Cerpen</button>
+        <button class="btn" onclick="tampilkanHalaman('kontak')">Hubungi Alora →</button>
+    </div>
+    <div class="ornament-bottom">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+</section>
+
+<section id="kontak" class="page">
+    <div class="ornament-top">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+    <h1>Hubungi Alora</h1>
+    <div class="kontak-box">
+        <p style="font-size:27px;margin-bottom:22px;font-family: Playfair Display;">makasih dh baca cerita saya.<br>klo mau kolep, atau donasi hehe.. silakan hubungi melalui:</p>
+        <p style="font-size:20px;">Instagram: <a href="https://www.instagram.com/aloradeythyna?igsh=NWt0OXd6OGV5bzM5" target="_blank" class="ig-link">Let's Chat!</a></p>
+        <p style="font-size:20px;">Wattpad: <a href="https://www.wattpad.com/story/387436922?utm_medium=link&utm_source=android&utm_content=share_writing" target="_blank" class="ig-link">Read My World</a></p>
+         <p style="font-size:20px;">Tiktok: <a href="https://www.tiktok.com/@aloradeythyna?_t=ZS-90HXVYWJXP7&_r=1" target="_blank" class="ig-link">See Another Content!</a></p>
+        <p style="margin-top:28px;font-style:italic;">Salam hangat,<br><span class="font-contoh1" style="font-size:22px;color:var(--coklat-tua);">Alora Deythyna</span></p>
+    </div>
+    <div class="page-nav">
+        <button class="btn" onclick="tampilkanHalaman('beranda')">← Kembali ke Halaman Utama</button>
+    </div>
+    <div class="ornament-bottom">· ˖ ˖ ˖ ˖ ˖ ˖ ˖ ˖ ·</div>
+</section>
+
+<script>
+function tampilkanHalaman(idHalaman){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(idHalaman).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function tampilkanSpoiler(idSpoiler){
+    const el = document.getElementById(idSpoiler);
+    if (el.style.display === "none" || el.style.display === "") {
+        el.style.display = "block";
+    } else {
+        el.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
